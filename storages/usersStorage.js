@@ -26,6 +26,19 @@ class UsersStorage {
     deleteUser(id) {
         delete this.storage[id];
     }
+
+    searchUser(searchParam) {
+        const res = [];
+        for (const { id, firstName, lastName, email } of this.getUsers()) {
+            if (
+                searchParam == firstName ||
+                searchParam == lastName ||
+                searchParam == email
+            )
+                res.push(this.storage[id]);
+        }
+        return res;
+    }
 }
 // Rather than exporting the class, we can export an instance of the class by instantiating it.
 // This ensures only one instance of this class can exist, also known as the "singleton" pattern.

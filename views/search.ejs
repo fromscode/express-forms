@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <div>You searched for: <%= searchParam %></div>
+    <% if(searchResults.length) {%>
+        <div>The following users matched:</div>
+        <ul>
+        <% searchResults.forEach((user) => { %>
+            <li>
+                <div>
+                  ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName %>
+                </div>
+                <div>
+                  Email: <%= user.email %>
+                </div>
+                <% if (user.bio) {%>
+                  <div>
+                    Bio: <%= user.bio %>
+                  </div>
+                <% } if (user.age) {%>
+                  <div>
+                    Age: <%= user.age %>
+                  </div>
+                <% } %>
+                <div>
+                  <a href="/<%= user.id %>/update">Update</a>
+                <form action="/<%= user.id %>/delete" method="POST" style="display:inline;">
+                  <button type="submit" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                </form>
+                </div>
+              </li>        
+        <% }) %>
+    </ul>
+    <% } else {%>
+        <div>No users matched, Try changing search input</div>
+        <% } %>
+  <a href="/">Back to home page</a>
+</body>
+</html>

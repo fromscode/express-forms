@@ -5,6 +5,13 @@
 </head>
 <body>
   <h1><%= title %></h1>
+  <%- include("partials/errors.ejs") %>
+  <form action="/search" method="GET">
+    <input type="text" placeholder="Enter name or email" name="search">
+    <button type="submit">Search</button>
+  </form>
+  <div>
+  </div>
   <ul>
     <% if (locals.users) {%>
       <% users.forEach(user => { %>
